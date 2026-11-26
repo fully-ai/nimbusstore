@@ -1,0 +1,17 @@
+services:
+  nimbusstore:
+    build: .
+    container_name: nimbusstore
+    ports:
+      - "8095:8095"
+    environment:
+      - NIMBUS_ADDR=:8095
+      - NIMBUS_DATA_DIR=/app/data
+      - NIMBUS_SEED_DEMO=true
+      - NIMBUS_SIGNING_SECRET=nimbusstore-production-signing-secret
+    volumes:
+      - nimbusstore_data:/app/data
+    restart: unless-stopped
+
+volumes:
+  nimbusstore_data:
